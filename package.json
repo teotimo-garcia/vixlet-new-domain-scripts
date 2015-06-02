@@ -1,0 +1,23 @@
+{
+  "name": "vixlet-new-domain-scripts",
+  "version": "1.0.0",
+  "description": "Collection of scripts for setting up a new domain",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**"
+  },
+  "keywords": [
+    "vixlet",
+    "domain",
+    "scripts"
+  ],
+  "author": "Vixlet, LLC",
+  "license": "Proprietary",
+  "dependencies": {
+    "bluebird": "^2.9.27",
+    "lodash": "^3.9.3",
+    "mongodb": "^2.0.33",
+    "superagent": "^1.2.0",
+    "superagent-bluebird-promise": "^2.0.2"
+  }
+}
