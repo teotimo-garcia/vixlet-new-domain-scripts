@@ -18,9 +18,9 @@ var firstNameArray = process.env.OFFICIAL_USER_FIRST_NAMES.split(',');
 var lastNameArray = process.env.OFFICIAL_USER_LAST_NAMES.split(',');
 var officialUsers = _.map(process.env.OFFICIAL_USER_USERNAMES.split(','), function(username) {
   var officialUser =  {
-    username: username,
+    username: username.toLowerCase(),
     password: passwordArray[officialUserCounter],
-    email: emailArray[officialUserCounter],
+    email: emailArray[officialUserCounter].toLowerCase(),
     firstName: firstNameArray[officialUserCounter],
     lastName: lastNameArray[officialUserCounter],
     clientId: clientId,
