@@ -6,6 +6,7 @@ var _ = require('lodash');
 var Promise = require('bluebird');
 var superagent = require('superagent-bluebird-promise');
 var MongoClient = require('mongodb').MongoClient;
+var bcrypt = require('bcrypt-nodejs');
 
 var clientId = process.env.CLIENT_ID;
 var userOAuthMongoDbUri = process.env.MONGODB_MULTI_OAUTHUSER;
@@ -26,6 +27,8 @@ var officialUsers = _.map(process.env.OFFICIAL_USER_USERNAMES.split(','), functi
     gender: 'M',
     birthDate: 635284107410
   };
+  var salt = bcrypt.genSaltSync(10);
+  officialUser.encrypted_password = bcrypt.hashSync(officialUser.password, salt);
   officialUserCounter++;
   return officialUser;
 });
@@ -65,7 +68,8 @@ return Promise.all(promises)
                   isBrandUser: true,
                   becameOfficial: new Date(),
                   becameBrand: new Date(),
-                  status: 1
+                  status: 1,
+                  encrypted_password: officialUser.encrypted_password
                 }
               },
               function(err) {

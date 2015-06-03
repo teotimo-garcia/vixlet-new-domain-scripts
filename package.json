@@ -14,6 +14,7 @@
   "author": "Vixlet, LLC",
   "license": "Proprietary",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^2.9.27",
     "lodash": "^3.9.3",
     "mongodb": "^2.0.33",
