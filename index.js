@@ -43,7 +43,7 @@ var promises = _.map(officialUsers, function(officialUser) {
     })
     .catch(function(err) {
       if (err.status === 400 && err.body.message === 'That username already exists') {
-        console.warn('User already exists');
+        console.warn('User already exists: ' + officialUser.username);
         return Promise.resolve();
       }
       console.error('ERROR!');
@@ -107,7 +107,12 @@ return Promise.all(promises)
           //console.log(result.body);
           //console.log('=========================');
           return superagent.put(baseUserApiUrl, updateParams)
-            .set('Authorization', 'Bearer ' + result.body.token);
+            .set('Authorization', 'Bearer ' + result.body.token)
+            .catch(function(err) {
+              console.error('Error while trying to update user to force Riak dual-write for user ' + params.username);
+              console.error(err);
+              return Promise.reject(err);
+            });
         });
     });
     return Promise.all(promises);
