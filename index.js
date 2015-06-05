@@ -107,12 +107,7 @@ return Promise.all(promises)
           //console.log(result.body);
           //console.log('=========================');
           return superagent.put(baseUserApiUrl, updateParams)
-            .set('Authorization', 'Bearer ' + result.body.token)
-            .catch(function(err) {
-              console.error('Error while trying to update user to force Riak dual-write for user ' + params.username);
-              console.error(err);
-              return Promise.reject(err);
-            });
+            .set('Authorization', 'Bearer ' + result.body.token);
         });
     });
     return Promise.all(promises);
